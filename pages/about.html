@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Our Visa Services</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2980b9;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --accent-color: #e74c3c;
+            --govt-blue: #0056b3;
+            --govt-gold: #ffc107;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e6eef7 100%);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: var(--govt-blue);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        header h1::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--govt-gold);
+            border-radius: 2px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #555;
+        }
+
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 50px;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            padding: 0 20px;
+        }
+
+        .about-text h2 {
+            color: var(--govt-blue);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .about-text p {
+            margin-bottom: 15px;
+        }
+
+        .partners {
+            margin-top: 40px;
+        }
+
+        .partners h3 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--govt-blue);
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .partner-logos {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .partner-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 300px;
+            text-align: center;
+            border-top: 5px solid var(--govt-gold);
+        }
+
+        .partner-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .partner-img {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .partner-img img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            filter: grayscale(20%);
+            transition: filter 0.3s ease;
+        }
+
+        .partner-card:hover .partner-img img {
+            filter: grayscale(0%);
+        }
+
+        .partner-info {
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+
+        .partner-info h4 {
+            margin-bottom: 10px;
+            color: var(--govt-blue);
+        }
+
+        .partner-info p {
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        .cta-section {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--govt-blue), #003d82);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 91, 187, 0.3);
+            background: linear-gradient(135deg, #003d82, var(--govt-blue));
+        }
+
+        .cta-button i {
+            margin-left: 8px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 70px;
+            padding: 25px;
+            background-color: var(--govt-blue);
+            color: white;
+        }
+
+        footer p {
+            margin-bottom: 0;
+        }
+
+        .seal {
+            width: 80px;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .partner-card {
+                width: 100%;
+                max-width: 350px;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Government Partnership Portal</h1>
+            <p>Our official collaboration with key ministries ensures compliant and efficient processing of all visa and work authorization applications.</p>
+        </header>
+
+        <div class="about-content">
+            <div class="about-text">
+                <h2>Ministry Partnerships</h2>
+                <p>We work directly with three key government ministries to streamline your visa and work authorization process. Our integrated system ensures all applications meet the strict requirements of each department.</p>
+                
+                <p>The Ministry of Labour and Social Affairs oversees social protections, the Ministry of Labour and Skill manages workforce qualifications, and the Ministry of Finance handles all financial clearances.</p>
+                
+                <p>This coordinated approach saves applicants time and reduces bureaucratic delays while maintaining full compliance with all government regulations.</p>
+
+                <div class="cta-section">
+                    <a href="index.html" class="cta-button">
+                        Begin Application Process <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="partners">
+            <h3>Our Official Ministry Partners</h3>
+            <div class="partner-logos">
+                <div class="partner-card">
+                    <div class="partner-img">
+                        <img src="social.png" alt="Ministry of Labour and Social Affairs">
+                    </div>
+                    <div class="partner-info">
+                        <h4>Ministry of Labour and Social Affairs</h4>
+                        <p>Oversees worker protections, social benefits, and employment regulations</p>
+                    </div>
+                </div>
+
+                <div class="partner-card">
+                    <div class="partner-img">
+                        <img src="labour_skill.png" alt="Ministry of Labour and Skill">
+                    </div>
+                    <div class="partner-info">
+                        <h4>Ministry of Labour and Skill</h4>
+                        <p>Manages workforce development, training, and skill certifications</p>
+                    </div>
+                </div>
+
+                <!-- <div class="partner-card">
+                    <div class="partner-img">
+                        <img src="" alt="Ministry of Finance">
+                    </div>
+                    <div class="partner-info">
+                        <h4>Ministry of Finance</h4>
+                        <p>Handles financial clearances, tax compliance, and fee processing</p>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h3>Ready to Begin Your Application?</h3>
+            <p>Our integrated system submits your application to all required ministries simultaneously</p>
+            <a href="index.html" class="cta-button">
+                Start Your Application Now <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Emblem_of_Ethiopia.svg/1200px-Emblem_of_Ethiopia.svg.png" alt="Government Seal" class="seal">
+        <p>Official Partner of the Federal Democratic Republic of Ethiopia</p>
+        <p>&copy; 2023 Government Visa Processing Portal. All rights reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visa Application Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2980b9;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 1000px;
+            margin: 30px auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, #3498db, #e74c3c, #f39c12, #27ae60);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h1::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--primary-color);
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 25px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--primary-color);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .form-group label {
+            width: 200px;
+            font-weight: 500;
+            color: var(--dark-color);
+            margin-right: 15px;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="number"],
+        .form-group input[type="tel"],
+        .form-group input[type="email"],
+        .form-group input[type="date"],
+        .form-group input[type="password"] {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+
+        .form-group input[type="radio"] {
+            margin-right: 8px;
+        }
+
+        .radio-group {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+        }
+
+        .radio-option label {
+            width: auto;
+            font-weight: normal;
+        }
+
+        .date-of-birth {
+            display: flex;
+            align-items: center;
+        }
+
+        .date-of-birth input[type="number"] {
+            width: 70px;
+            margin-right: 10px;
+            text-align: center;
+        }
+
+        .date-separator {
+            margin: 0 5px;
+            font-weight: bold;
+            color: var(--dark-color);
+        }
+
+        .address-group {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .address-group > div {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .address-group > div:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .address-group h3 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .upload-buttons {
+            margin: 30px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .upload-btn {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .upload-btn input[type="file"] {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .upload-btn label {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .upload-btn label:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .upload-btn i {
+            margin-right: 8px;
+        }
+
+        button[type="submit"], button.about-us {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            display: block;
+            margin: 30px auto;
+            width: 100%;
+            max-width: 300px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        button[type="submit"]:hover, button.about-us:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+        }
+        
+        button[type="submit"]:active, button.about-us:active {
+            transform: translateY(1px);
+        }
+
+        .declaration-payment-section {
+            margin-top: 30px;
+            padding: 25px;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            background-color: #f8f9fa;
+            position: relative;
+        }
+
+        .declaration-payment-section h2 {
+            color: var(--accent-color);
+        }
+
+        .declaration-payment-section h2::after {
+            background: var(--accent-color);
+        }
+
+        .payment-details {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            border-left: 4px solid var(--success-color);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .payment-header {
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .amount {
+            font-weight: bold;
+            color: var(--success-color);
+            font-size: 1.2rem;
+        }
+
+        .account-number, .account-holder {
+            font-weight: bold;
+            color: var(--dark-color);
+        }
+
+        .payment-note {
+            font-size: 0.9em;
+            color: #6c757d;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #dee2e6;
+        }
+
+        .important {
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        .form-group.signature,
+        .form-group.date {
+            margin-top: 20px;
+        }
+
+        .support-link {
+            text-align: center;
+            margin-top: 30px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .support-link a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .support-link a:hover {
+            color: var(--secondary-color);
+            text-decoration: underline;
+        }
+
+        .support-link i {
+            margin-right: 8px;
+        }
+
+        .progress-bar {
+            height: 5px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            width: 33%;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transition: width 0.3s ease;
+        }
+
+        .country-flags {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .country-flag {
+            width: 60px;
+            height: 40px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .country-flag:hover {
+            transform: scale(1.1);
+        }
+
+        .flag-usa {
+            background-image: url('https://flagcdn.com/w80/us.png');
+        }
+
+        .flag-canada {
+            background-image: url('https://flagcdn.com/w80/ca.png');
+        }
+
+        .flag-italy {
+            background-image: url('https://flagcdn.com/w80/it.png');
+        }
+
+        .flag-ethiopia {
+            background-image: url('https://flagcdn.com/w80/et.png');
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                width: 95%;
+            }
+
+            .form-group label {
+                width: 100%;
+                margin-bottom: 8px;
+            }
+
+            .form-group input {
+                width: 100%;
+            }
+
+            .upload-buttons {
+                flex-direction: column;
+            }
+
+            .date-of-birth {
+                flex-wrap: wrap;
+            }
+
+            .date-of-birth input[type="number"] {
+                width: calc(33% - 10px);
+                margin-bottom: 10px;
+            }
+        }
+
+        /* Loading spinner */
+        .spinner {
+            display: none;
+            width: 40px;
+            height: 40px;
+            margin: 0 auto;
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            border-top: 4px solid var(--primary-color);
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Success message */
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            background-color: #d4edda;
+            color: #155724;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .success-message i {
+            color: #28a745;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+        
+        <div class="country-flags">
+            <div class="country-flag flag-usa" title="United States"></div>
+            <div class="country-flag flag-canada" title="Canada"></div>
+            <div class="country-flag flag-italy" title="Italy"></div>
+            <div class="country-flag flag-ethiopia" title="Ethiopia"></div>
+        </div>
+
+        <h1>Visa Application Form</h1>
+        <button class="about-us" onclick="window.location.href='about.html'">About Us</button>
+        <div class="success-message">
+            <i class="fas fa-check-circle"></i>
+            <h3>Application Submitted Successfully!</h3>
+            <p>Thank you for your submission. We will process your application and contact you soon.</p>
+        </div>
+
+        <form id="applicationForm">
+            <div class="section">
+                <h2><i class="fas fa-user"></i> Personal Information</h2>
+                <div class="form-group">
+                    <label for="name">Full Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="father_name">Father's Name:</label>
+                    <input type="text" id="father_name" name="father_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="gfather_name">Grandfather's Name:</label>
+                    <input type="text" id="gfather_name" name="gfather_name" required>
+                </div>
+                <div class="form-group">
+                    <label>Sex:</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="male" name="sex" value="male" required>
+                            <label for="male">Male</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="female" name="sex" value="female">
+                            <label for="female">Female</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group date-of-birth">
+                    <label>Date of Birth:</label>
+                    <input type="number" id="day" name="day" placeholder="DD" min="1" max="31" required>
+                    <span class="date-separator">/</span>
+                    <input type="number" id="month" name="month" placeholder="MM" min="1" max="12" required>
+                    <span class="date-separator">/</span>
+                    <input type="number" id="year" name="year" placeholder="YYYY" required>
+                </div>
+                <div class="form-group">
+                    <label for="place_of_birth">Place of Birth:</label>
+                    <input type="text" id="place_of_birth" name="place_of_birth" required>
+                </div>
+                <div class="form-group">
+                    <label for="height">Height (cm):</label>
+                    <input type="number" id="height" name="height" required>
+                </div>
+                <div class="form-group">
+                    <label for="eye_color">Eye Color:</label>
+                    <input type="text" id="eye_color" name="eye_color" required>
+                </div>
+                <div class="form-group">
+                    <label for="hair_color">Hair Color:</label>
+                    <input type="text" id="hair_color" name="hair_color" required>
+                </div>
+                <div class="form-group">
+                    <label for="occupation">Occupation:</label>
+                    <input type="text" id="occupation" name="occupation" required>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2><i class="fas fa-home"></i> Residence Address</h2>
+                
+                <div class="form-group">
+                    <label>Address Type:</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="address_local" name="address_type" value="local" checked required>
+                            <label for="address_local">Local Address</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="address_abroad" name="address_type" value="abroad">
+                            <label for="address_abroad">Abroad Address</label>
+                        </div>
+                    </div>
+                </div>
+            
+                <div id="localAddressSection" class="address-group">
+                    <h3>Local Address</h3>
+                    <div class="form-group">
+                        <label for="region_local">Region:</label>
+                        <input type="text" id="region_local" name="region_local" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="zone_local">Zone:</label>
+                        <input type="text" id="zone_local" name="zone_local" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="woreda_local">Woreda/Ketema:</label>
+                        <input type="text" id="woreda_local" name="woreda_local" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="kebele_local">Kebele:</label>
+                        <input type="text" id="kebele_local" name="kebele_local" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="house_no_local">House No.:</label>
+                        <input type="text" id="house_no_local" name="house_no_local" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone_no_local">Phone No.:</label>
+                        <input type="tel" id="phone_no_local" name="phone_no_local" required>
+                    </div>
+                </div>
+            
+                <div id="abroadAddressSection" class="address-group" style="display: none;">
+                    <h3>Abroad Address</h3>
+                    <div class="form-group">
+                        <label for="country_abroad">Country:</label>
+                        <input type="text" id="country_abroad" name="country_abroad">
+                    </div>
+                    <div class="form-group">
+                        <label for="city_abroad">City:</label>
+                        <input type="text" id="city_abroad" name="city_abroad">
+                    </div>
+                    <div class="form-group">
+                        <label for="street_abroad">Street Name:</label>
+                        <input type="text" id="street_abroad" name="street_abroad">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone_no_abroad">Phone No.:</label>
+                        <input type="tel" id="phone_no_abroad" name="phone_no_abroad">
+                    </div>
+                    <div class="form-group">
+                        <label for="po_box_abroad">P.O. Box:</label>
+                        <input type="text" id="po_box_abroad" name="po_box_abroad">
+                    </div>
+                    <div class="form-group">
+                        <label for="email_abroad">E-Mail:</label>
+                        <input type="email" id="email_abroad" name="email_abroad">
+                    </div>
+                </div>
+            </div>
+
+            <div class="declaration-payment-section">
+                <h2><i class="fas fa-file-signature"></i> Declaration and Payment</h2>
+                <p>I, THE UNDERSIGNED DECLARE THAT THE ABOVE STATEMENTS ARE COMPLETE, TRUE AND CORRECT TO THE BEST OF MY KNOWLEDGE.</p>
+                <div class="payment-details">
+                    <p class="payment-header"><i class="fas fa-exclamation-circle"></i> IMPORTANT PAYMENT INSTRUCTIONS:</p>
+                    <p>
+                        To complete your registration, please pay the amount of 
+                        <span class="amount">3565.00 BIRR</span> to the following CBE account:
+                    </p>
+                    <p>
+                        <i class="fas fa-university"></i> CBE Account Number: <span class="account-number">1000536369067</span><br>
+                        <i class="fas fa-user-tie"></i> Account Holder: <span class="account-holder">Dr DESALEGN GETIE</span>
+                    </p>
+                    <p class="payment-note">
+                        <span class="important">NOTE:</span> After making the payment, please upload a screenshot of the payment receipt.
+                    </p>
+                </div>
+                <div class="form-group signature">
+                    <label for="full_name">Full Name (for signature):</label>
+                    <input type="text" id="full_name" name="full_name" required>
+                </div>
+                <div class="form-group date">
+                    <label for="signature_date">Date:</label>
+                    <input type="date" id="signature_date" name="signature_date" required>
+                </div>
+            </div>
+
+            <div class="upload-buttons">
+                <div class="upload-btn">
+                    <label for="id_image"><i class="fas fa-id-card"></i> Upload ID Document</label>
+                    <input type="file" id="id_image" name="id_image" accept="image/*" required>
+                </div>
+                <div class="upload-btn">
+                    <label for="photo_image"><i class="fas fa-camera"></i> Upload Photo</label>
+                    <input type="file" id="photo_image" name="photo_image" accept="image/*" required>
+                </div>
+                <div class="upload-btn">
+                    <label for="receipt_image"><i class="fas fa-receipt"></i> Upload Payment Receipt</label>
+                    <input type="file" id="receipt_image" name="receipt_image" accept="image/*" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="spinner" id="spinner"></div>
+            </div>
+
+            <button type="submit" id="submitBtn">
+                <span id="submitText">Submit Application</span>
+            </button>
+        </form>
+
+        <div class="support-link">
+            <p><i class="fas fa-headset"></i> For support, contact us on Telegram: <a href="https://t.me/YshakMaledacounseltancy" target="_blank">@YshakMaledacounseltancy</a></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('applicationForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Show loading spinner
+            document.getElementById('spinner').style.display = 'block';
+            document.getElementById('submitText').textContent = 'Processing...';
+            document.getElementById('submitBtn').disabled = true;
+            
+            try {
+                const formData = new FormData(this);
+                
+                // Send data to server
+                const response = await fetch('http://localhost:4004/submit', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                if (response.ok) {
+                    const result = await response.json();
+                    console.log('Success:', result);
+                    
+                    // Hide form and show success message
+                    document.getElementById('applicationForm').style.display = 'none';
+                    document.querySelector('.success-message').style.display = 'block';
+                    
+                    // Scroll to success message
+                    document.querySelector('.success-message').scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                } else {
+                    throw new Error('Network response was not ok');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('There was an error submitting your application. Please try again.');
+            } finally {
+                // Hide loading spinner
+                document.getElementById('spinner').style.display = 'none';
+                document.getElementById('submitText').textContent = 'Submit Application';
+                document.getElementById('submitBtn').disabled = false;
+            }
+        });
+
+        // Form validation
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('blur', function() {
+                if (this.required && !this.value) {
+                    this.style.borderColor = 'red';
+                } else {
+                    this.style.borderColor = '#ddd';
+                }
+            });
+        });
+
+        // Date validation
+        document.getElementById('day').addEventListener('input', validateDate);
+        document.getElementById('month').addEventListener('input', validateDate);
+        document.getElementById('year').addEventListener('input', validateDate);
+
+        function validateDate() {
+            const day = document.getElementById('day');
+            const month = document.getElementById('month');
+            const year = document.getElementById('year');
+            
+            if (day.value && (day.value < 1 || day.value > 31)) {
+                day.style.borderColor = 'red';
+            } else {
+                day.style.borderColor = '#ddd';
+            }
+            
+            if (month.value && (month.value < 1 || month.value > 12)) {
+                month.style.borderColor = 'red';
+            } else {
+                month.style.borderColor = '#ddd';
+            }
+            
+            if (year.value && (year.value < 1900 || year.value > new Date().getFullYear())) {
+                year.style.borderColor = 'red';
+            } else {
+                year.style.borderColor = '#ddd';
+            }
+        }
+
+        // File upload feedback
+        document.querySelectorAll('input[type="file"]').forEach(input => {
+            input.addEventListener('change', function() {
+                if (this.files.length > 0) {
+                    const label = this.previousElementSibling;
+                    label.innerHTML = `<i class="fas fa-check"></i> ${label.textContent} (${this.files[0].name})`;
+                    label.style.backgroundColor = '#28a745';
+                }
+            });
+        });
+    </script>
+
+<script>
+    // Handle address type selection
+    document.querySelectorAll('input[name="address_type"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+            if (this.value === 'local') {
+                document.getElementById('localAddressSection').style.display = 'block';
+                document.getElementById('abroadAddressSection').style.display = 'none';
+                
+                // Set required attributes for local address
+                document.querySelectorAll('#localAddressSection input').forEach(input => {
+                    input.required = true;
+                });
+                
+                // Remove required attributes from abroad address
+                document.querySelectorAll('#abroadAddressSection input').forEach(input => {
+                    input.required = false;
+                });
+            } else {
+                document.getElementById('localAddressSection').style.display = 'none';
+                document.getElementById('abroadAddressSection').style.display = 'block';
+                
+                // Remove required attributes from local address
+                document.querySelectorAll('#localAddressSection input').forEach(input => {
+                    input.required = false;
+                });
+                
+                // Set required attributes for abroad address
+                document.querySelectorAll('#abroadAddressSection input').forEach(input => {
+                    if (input.id !== 'po_box_abroad') { // PO Box is optional
+                        input.required = true;
+                    }
+                });
+            }
+        });
+    });
+
+    // Initialize required fields
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('#abroadAddressSection input').forEach(input => {
+            input.required = false;
+        });
+    });
+</script>
+</body>
+</html>
