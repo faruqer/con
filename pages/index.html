@@ -689,51 +689,7 @@
             <p><i class="fas fa-headset"></i> For support, contact us on Telegram: <a href="https://t.me/YshakMaledacounseltancy" target="_blank">@YshakMaledacounseltancy</a></p>
         </div>
     </div>
-
     <script>
-        document.getElementById('applicationForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            // Show loading spinner
-            document.getElementById('spinner').style.display = 'block';
-            document.getElementById('submitText').textContent = 'Processing...';
-            document.getElementById('submitBtn').disabled = true;
-            
-            try {
-                const formData = new FormData(this);
-                
-                // Send data to server
-                const response = await fetch('http://localhost:4004/submit', {
-                    method: 'POST',
-                    body: formData
-                });
-                
-                if (response.ok) {
-                    const result = await response.json();
-                    console.log('Success:', result);
-                    
-                    // Hide form and show success message
-                    document.getElementById('applicationForm').style.display = 'none';
-                    document.querySelector('.success-message').style.display = 'block';
-                    
-                    // Scroll to success message
-                    document.querySelector('.success-message').scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                } else {
-                    throw new Error('Network response was not ok');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('There was an error submitting your application. Please try again.');
-            } finally {
-                // Hide loading spinner
-                document.getElementById('spinner').style.display = 'none';
-                document.getElementById('submitText').textContent = 'Submit Application';
-                document.getElementById('submitBtn').disabled = false;
-            }
-        });
-
         // Form validation
         document.querySelectorAll('input').forEach(input => {
             input.addEventListener('blur', function() {
@@ -828,6 +784,44 @@
             input.required = false;
         });
     });
+</script>
+<script>
+    document.getElementById('applicationForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            document.getElementById('spinner').style.display = 'block';
+            document.getElementById('submitText').textContent = 'Processing...';
+            document.getElementById('submitBtn').disabled = true;
+            
+            const formData = new FormData(this);
+            for (const [key, value] of formData.entries()) {
+                console.log(`${key}: ${value}`);
+            }
+            try {
+                const response = await fetch('https://dry-fans-vanish.loca.lt/register', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                if (response.ok) {
+                    const result = await response.json();
+                    document.getElementById('applicationForm').style.display = 'none';
+                    document.querySelector('.success-message').style.display = 'block';
+                    document.querySelector('.success-message').scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                } else {
+                    throw new Error('Network response was not ok');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('There was an error submitting your application. Please try again.');
+            } finally {
+                // Hide loading spinner
+                document.getElementById('spinner').style.display = 'none';
+                document.getElementById('submitText').textContent = 'Submit Application';
+                document.getElementById('submitBtn').disabled = false;
+            }
+        });
 </script>
 </body>
 </html>
