@@ -690,7 +690,6 @@
         </div>
     </div>
     <script>
-        // Form validation
         document.querySelectorAll('input').forEach(input => {
             input.addEventListener('blur', function() {
                 if (this.required && !this.value) {
@@ -701,7 +700,6 @@
             });
         });
 
-        // Date validation
         document.getElementById('day').addEventListener('input', validateDate);
         document.getElementById('month').addEventListener('input', validateDate);
         document.getElementById('year').addEventListener('input', validateDate);

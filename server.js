@@ -27,7 +27,6 @@ const storage = multer.diskStorage({
     cb(null, uploadDir);
   },
   filename: (req, file, cb) => {
-    // Fallback if names aren't provided
     const name = req.body.name || 'NEW';
     const fathername = req.body.father_name || 'USER';
     const grandfathername = req.body.gfather_name || 'IMAGE';
@@ -54,6 +53,16 @@ app.post('/register',
     const name = req.body.name || 'NEW';
     const fathername = req.body.fathername || 'USER';
     const grandfathername = req.body.grandfathername || 'IMAGE';
+
+    const formData = req.body
+    const dataFile = path.join(__dirname, 'data', 'applications.json');
+    let existingData = [];
+    if (fs.existsSync(dataFile)) {
+      const rawData = fs.readFileSync(dataFile);
+      existingData = JSON.parse(rawData || '[]');
+    }
+    existingData.push(formData);
+    fs.writeFileSync(dataFile, JSON.stringify(existingData, null, 2));
 
     const filenameBase = `${name}_${fathername}_${grandfathername}`;
     const uploadedFiles = [];
